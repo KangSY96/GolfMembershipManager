@@ -17,6 +17,8 @@ add_executable(${PROJECT_NAME}
     ./src/hw/Button/ManageButton.cpp
     ./src/hw/tcpServer/ComDev.cpp
     ./src/hw/tcpServer/tcpServer.cpp
+    ./src/hw/I2C/I2C.cpp
+    ./src/hw/LCD/LCD.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
@@ -31,6 +33,8 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     ./src/hw/Monitor
     ./src/hw/Button
     ./src/hw/tcpServer/
+    ./src/hw/I2C
+    ./src/hw/LCD
 )
 
 target_link_libraries(${PROJECT_NAME} PUBLIC

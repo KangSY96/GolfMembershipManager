@@ -9,7 +9,8 @@
 #include "MembersEntity.h"
 #include "tcpServer.h"
 #include "ComDev.h"
-
+#include "I2C.h"
+#include "LCD.h"
 
 
 void serverThread(tcpServer *server)
@@ -34,16 +35,15 @@ void serverThread(tcpServer *server)
 
 int main(void)
 {
+    LCD lcd(new I2C("/dev/i2c-1", 0x27));
     tcpServer *cardTcpServer = new tcpServer(5100);
     ComDev *comDev = new ComDev(cardTcpServer);
-    MembersManageService * membersManageSerivce = new MembersManageService(comDev);
+    MembersManageService * membersManageSerivce = new MembersManageService(comDev, &lcd);
     Controller *controller = new Controller(membersManageSerivce);
     Listener *listener = new Listener(controller);
     std::thread threadFunc(serverThread, cardTcpServer);
 
-    //GolfMembershipManager golfMembershipManager;
 
-    //golfMembershipManager.run();
     while(1)
     {
         listener->checkEvent();

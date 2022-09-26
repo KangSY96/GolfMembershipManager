@@ -21,7 +21,13 @@ void Controller::updateEvent(DeviceData data)
 
         membersManageService->checkCardNumber(cardNumber);
     }
+
     if (data.devName == "ModeButton") {
         membersManageService->updateStateEvent(data.devName);
     }
+
+    if (data.devName == "SearchButton") {
+        membersManageService->updateSearchStateEvent(data.devName);
+    }
+
 }

@@ -48,7 +48,16 @@ void MembersEntity::printMemberInfo(std::string name)
 {
     for (const auto &member : vecMembersList) {
         if (strcmp(member.name, name.c_str()) == 0) {
-            printMemberInfo(member.id);
+            printf(" ID : %04d\n Name : %s Address : %s PhoneNumber : %s CardNumber : %0x-%0x-%0x-%0x-%0x\n",
+                   member.id,
+                   member.name,
+                   member.address,
+                   member.phoneNumber,
+                   member.cardNum[0],
+                   member.cardNum[1],
+                   member.cardNum[2],
+                   member.cardNum[3],
+                   member.cardNum[4]);
             return;
         }
     }
@@ -60,7 +69,7 @@ void MembersEntity::printMemberInfo(int *cardNum)
     {
         if (memcmp(member.cardNum, cardNum, sizeof(member.cardNum)) == 0)
         {
-            printf("%04d, %s, %s, %s, %0x-%0x-%0x-%0x-%0x\n",
+            printf(" ID : %04d\n Name : %s Address : %s PhoneNumber : %s CardNumber : %0x-%0x-%0x-%0x-%0x\n",
                    member.id,
                    member.name,
                    member.address,
@@ -79,7 +88,6 @@ bool MembersEntity::findMemberInfo(std::string name)
 {
     for (const auto &member : vecMembersList) {
         if (strcmp(member.name, name.c_str()) == 0) {
-            printMemberInfo(member.id);
             return true;
         }
     }
